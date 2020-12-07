@@ -1,9 +1,11 @@
 import { Application } from 'egg';
-import { makeRouter } from './decorator';
+import { Qkouter } from './decorator';
 
 export default (app: Application) => {
   // const { controller, router } = app;
 
   // router.get('/', controller.home.index);
-  makeRouter(app);
+  // router.get('/pilot/', controller.pilot.index.index);
+  // router.get('/pilot/ranking', controller.pilot.index.ranking);
+  Qkouter(app);
 };
