@@ -7,13 +7,21 @@ export default class MethodHandler {
     this.mapper = mapper;
   }
 
-  get() {
+  request(method: string) {
     return (path: string) => {
       return (target: any, _: string, descriptor: any) => {
         Reflect.defineMetadata('path', path, descriptor.value);
-        Reflect.defineMetadata('method', 'get', descriptor.value);
+        Reflect.defineMetadata('method', method, descriptor.value);
         this.mapper.set(target, target);
-        return descriptor;
+        // return descriptor;
+      };
+    };
+  }
+
+  middleware() {
+    return (middlewareList: string[]) => {
+      return (_: any, __: string, descriptor: any) => {
+        Reflect.defineMetadata('middleware', middlewareList, descriptor.value);
       };
     };
   }

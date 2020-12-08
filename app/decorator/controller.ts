@@ -8,4 +8,12 @@ export default class ControllerHandler {
       };
     };
   }
+
+  middleware() {
+    return (middlewares: string[]) => {
+      return (target: any) => {
+        Reflect.defineMetadata('controllerMiddleware', middlewares, target);
+      };
+    };
+  }
 }
